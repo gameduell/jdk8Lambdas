@@ -50,6 +50,8 @@ We can group Functional Interfaces in several groups:
   * Callable: Starting threads which body are &#955; which return a future value is now possible.
   * Comparator: Whenever a comparable is expected, a &#955; can be provided, this means all sort methods in collections or constructors in sorted collections.
 
+Of course, as a developer you can define your own methods that take a Functional Interface as an attribute and the callers of these methods can make use of &#955;.
+
 ### Composability
 Many of the Functional Interfaces provided in the Standard Library provide methods to compose &#955;. For example, Predicates have the typical boolean logic combinators (and, or and negate); others like Function offer the `andThen` and the `compose` combinators. This functionality is provided via default method implementations within the Functional Interfaces.
 
@@ -78,6 +80,19 @@ All functions defined under Stream have a meaning and a purpose and they can com
 One of the new functionality of Streams is that they can be easily converted to a parallel stream, meaning that the functions called on streams are spawned to different Threads. **Use parallel streams with caution!**. Performance is not improved just by converting a stream to a parallel one, other aspects come into play as well. Furthermore, spawning new Threads under a JEE context is considered a bad practice and is discouraged.
 Never trust given benchmarks, to be sure if it's better to use parallel streams instead of its sequential counterpart, perform benchmarks first and not only on a Developer Machine. Commonly, streams need to be big and the task to perform with each element must be CPU intensive and satisfy associativity and commutativity laws.
 To convert a stream to a parallel one just call `parallel()` on streams, or directly generate a parallel stream from a Collection calling `parallelStream()`.
+
+## Some Best Practices
+The following are some initial best practices and it should be seen as a living document.
+* Prefer readability over fanciness.
+* Use type inference in &#955; parameters, unless the compiler can't infer it, obviously.
+* If &#955; have only 1 parameter parenthesis can be left out.
+* Do not write long body &#955;. Think again if the resulting &#955; is still readable.
+* If a method you write has a Functional Interface as parameter, place it last in the parameter list.
+* Streams are linear, they don't play well with Sets, Maps and multi-dimensional Arrays.
+* A method reference is not always more readable than an expanded &#955;.
+* Do not use parallel streams in a JEE context.
+* Use parallel streams in a non JEE context only if you proved that it will be faster. Even then, think twice before using them.
+* It is OK to extract &#955; into local variables and use them in _HOF_.
 
 ## Optional Type
 This is one of the solutions to the 'Billion Dollar Mistake' a.k.a. NullPointerException. This class is typically used to express that a method returns an object that might or might not be null, so instead of letting the caller of this function deal with the complexity of checking whether is null or not, a new type is created to deal with it. As in 'Stream' there are some _HOF_ methods like `map`, `flatMap` and `filter`. One useful method is `orElse` which is an elegant way of retrieving the enclosed value, if any, providing a default in case it doesn't exist. Some do's and don'ts:
