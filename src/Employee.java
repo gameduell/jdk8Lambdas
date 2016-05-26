@@ -31,6 +31,14 @@ class Employee {
         return department;
     }
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", salary=" + salary +
+                ", department='" + department + '\'' +
+                '}';
+    }
 
     /**
      * tiny helper method that gives me employees
