@@ -12,7 +12,7 @@ A lambda is an anonymous function and if you ever developed in JavaScript, you u
  (a + b) -> a + b
 ```
 ### Longer story
-Anonymous functions originate in the work of [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church) in his invention of the [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus)in 1936 (prior to electronic computers), in which all functions are anonymous.
+Anonymous functions originate in the work of [Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church) in his invention of the [lambda calculus](https://en.wikipedia.org/wiki/Lambda_calculus) in 1936 (prior to electronic computers), in which all functions are anonymous.
 The syntax of the &#955; is the following:
 * A comma-separated list of formal parameters enclosed in parentheses.
   Note: You can omit the data type of the parameters in a lambda expression. In addition, you can omit the parentheses if there is only one parameter.
@@ -29,7 +29,7 @@ Functional Interfaces are the Java solution to bring lambda's to Java and make f
 * They might have many other default implementation methods
 
 
-As stated before, a &#955; will only compile if it can find an interface annotated with `@FunctionalInterface` which abstract method signature matches the one of the &#955;
+As stated before, a &#955; will only compile if it can find any "Functional Interface" interface (annotated with `@FunctionalInterface` or not) which abstract method signature matches the one of the &#955;
 
 We can group Functional Interfaces in several groups:
 * New Interfaces created:
