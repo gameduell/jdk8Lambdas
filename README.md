@@ -93,6 +93,7 @@ The following are some initial best practices and it should be seen as a living 
 * Do not use parallel streams in a JEE context.
 * Use parallel streams in a non JEE context only if you proved that it will be faster. Even then, think twice before using them.
 * It is OK to extract &#955; into local variables and use them in _HOF_.
+* Do not use &#955; as a parameters in EJB calls.
 
 ## Optional Type
 This is one of the solutions to the 'Billion Dollar Mistake' a.k.a. NullPointerException. This class is typically used to express that a method returns an object that might or might not be null, so instead of letting the caller of this function deal with the complexity of checking whether is null or not, a new type is created to deal with it. As in 'Stream' there are some _HOF_ methods like `map`, `flatMap` and `filter`. One useful method is `orElse` which is an elegant way of retrieving the enclosed value, if any, providing a default in case it doesn't exist. Some do's and don'ts:
