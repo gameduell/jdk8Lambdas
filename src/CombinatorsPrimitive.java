@@ -11,14 +11,27 @@ public class CombinatorsPrimitive {
 
     public static void main(String[] args) {
 
+        DoubleUnaryOperator tax = price -> price * 19 / 100 + price;
+        DoubleUnaryOperator voucher = price -> price - 10;
+
         System.out.println(calculateGrossPrice(60,
-                price -> price * 19 / 100 + price,
-                price -> price - 10
+                tax,
+                voucher
         ));
 
         System.out.println(calculateGrossPriceWrongly(60,
-                price -> price * 19 / 100 + price,
-                price -> price - 10
+                tax,
+                voucher
+        ));
+
+        System.out.println(calculateGrossSingleOp(60,
+                tax.andThen(voucher)
+
+        ));
+
+        System.out.println(calculateGrossSingleOp(60,
+                tax.compose(voucher)
+
         ));
     }
 
@@ -33,5 +46,11 @@ public class CombinatorsPrimitive {
 
         //compose applies the functions in reverse order. f.compose(g) --> f(g(x))
         return Stream.of(ops).reduce(DoubleUnaryOperator.identity(), DoubleUnaryOperator::compose).applyAsDouble(price);
+    }
+
+    private static double calculateGrossSingleOp(double price, DoubleUnaryOperator op) {
+
+        return op.applyAsDouble(price);
+
     }
 }
