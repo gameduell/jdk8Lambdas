@@ -78,7 +78,7 @@ All functions defined under Stream have a meaning and a purpose and they can com
 
 ### Parallel Streams
 One of the new functionality of Streams is that they can be easily converted to a parallel stream, meaning that the functions called on streams are spawned to different Threads. **Use parallel streams with caution!**. Performance is not improved just by converting a stream to a parallel one, other aspects come into play as well. Furthermore, spawning new Threads under a JEE context is considered a bad practice and is discouraged.
-Never trust given benchmarks, to be sure if it's better to use parallel streams instead of its sequential counterpart, perform benchmarks first and not only on a Developer Machine. Commonly, streams need to be big and the task to perform with each element must be CPU intensive and satisfy associativity and commutativity laws.
+Never trust given benchmarks, to be sure if it's better to use parallel streams instead of its sequential counterpart, perform benchmarks first and not only on a Developer Machine. Commonly, streams need to be big and the task to perform with each element must be CPU intensive and satisfy associativity law and should not have side effects.
 To convert a stream to a parallel one just call `parallel()` on streams, or directly generate a parallel stream from a Collection calling `parallelStream()`.
 
 ## Some Best Practices
